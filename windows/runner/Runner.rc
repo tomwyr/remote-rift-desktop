@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "remote_rift_desktop" "\0"
+            VALUE "CompanyName", "Tomasz Wyrowiński" "\0"
+            VALUE "FileDescription", "Remote Rift" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "remote_rift_desktop" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "remote_rift_desktop.exe" "\0"
-            VALUE "ProductName", "remote_rift_desktop" "\0"
+            VALUE "InternalName", "Remote Rift" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 Tomasz Wyrowiński. All rights reserved." "\0"
+            VALUE "OriginalFilename", "RemoteRift.exe" "\0"
+            VALUE "ProductName", "Remote Rift" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
