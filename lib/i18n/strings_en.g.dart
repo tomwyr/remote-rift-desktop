@@ -41,6 +41,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 
 	// Translations
 	late final TranslationsAppEn app = TranslationsAppEn._(_root);
+	late final TranslationsTrayEn tray = TranslationsTrayEn._(_root);
 	late final TranslationsConnectionEn connection = TranslationsConnectionEn._(_root);
 	late final TranslationsGameErrorEn gameError = TranslationsGameErrorEn._(_root);
 }
@@ -55,6 +56,21 @@ class TranslationsAppEn {
 
 	/// en: 'Remote Rift'
 	String get title => 'Remote Rift';
+}
+
+// Path: tray
+class TranslationsTrayEn {
+	TranslationsTrayEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Open'
+	String get openLabel => 'Open';
+
+	/// en: 'Quit'
+	String get quitLabel => 'Quit';
 }
 
 // Path: connection
@@ -117,6 +133,8 @@ extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Remote Rift',
+			'tray.openLabel' => 'Open',
+			'tray.quitLabel' => 'Quit',
 			'connection.connectingTitle' => 'Connecting...',
 			'connection.connectingDescription' => 'Initializing communication with the game client.',
 			'connection.connectedTitle' => 'Connected',

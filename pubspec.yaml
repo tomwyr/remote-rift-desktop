@@ -15,6 +15,7 @@ dependencies:
   draft: ^0.0.12
   slang: ^4.8.1
   slang_flutter: ^4.8.0
+  tray_manager: ^0.5.2
 
   remote_rift_connector_api:
     path: ../remote-rift-connector/packages/api

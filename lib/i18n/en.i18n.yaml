@@ -1,6 +1,10 @@
 app:
   title: "Remote Rift"
 
+tray:
+  openLabel: "Open"
+  quitLabel: "Quit"
+
 connection:
   connectingTitle: "Connecting..."
   connectingDescription: "Initializing communication with the game client."
