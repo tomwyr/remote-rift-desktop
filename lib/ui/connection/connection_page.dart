@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:remote_rift_connector_core/remote_rift_connector_core.dart';
 
 import '../../dependencies.dart';
-import '../../l10n.dart';
+import '../../i18n/strings.g.dart';
 import '../widgets/layout.dart';
 import '../widgets/lifecycle.dart';
 import 'connection_cubit.dart';

@@ -13,6 +13,8 @@ dependencies:
   flutter_bloc: ^9.1.1
   cancelable_stream: ^1.0.0
   draft: ^0.0.12
+  slang: ^4.8.1
+  slang_flutter: ^4.8.0
 
   remote_rift_connector_api:
     path: ../remote-rift-connector/packages/api

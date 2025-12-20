@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../l10n.dart';
+import '../../i18n/strings.g.dart';
 import '../connection/connection_page.dart';
 
 class App extends StatelessWidget {
