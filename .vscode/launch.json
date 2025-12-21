@@ -9,6 +9,25 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "debug",
+      "toolArgs": [
+        "--dart-define",
+        "API_HOST=${input:host}",
+        "--dart-define",
+        "API_PORT=${input:port}"
+      ],
     },
+  ],
+  "inputs": [
+    {
+      "id": "host",
+      "type": "promptString",
+      "description": "Connector API host address",
+    },
+    {
+      "id": "port",
+      "type": "promptString",
+      "description": "Connector API port number",
+      "default": "8080",
+    }
   ]
 }
