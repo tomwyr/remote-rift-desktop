@@ -4,6 +4,7 @@ import 'package:remote_rift_connector_core/remote_rift_connector_core.dart';
 
 import '../../dependencies.dart';
 import '../../i18n/strings.g.dart';
+import '../app/app_theme.dart';
 import '../widgets/layout.dart';
 import '../widgets/lifecycle.dart';
 import 'connection_cubit.dart';
@@ -19,6 +20,7 @@ class ConnectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.watch<ConnectionCubit>();
+    final colorScheme = AppThemeExtension.of(context).colorScheme;
 
     return Lifecycle(
       onInit: cubit.initialize,
@@ -31,12 +33,14 @@ class ConnectionPage extends StatelessWidget {
             Connecting() => BasicLayout(
               title: t.connection.connectingTitle,
               description: t.connection.connectingDescription,
+              icon: .new(data: Icons.wifi_tethering_rounded, color: colorScheme.neutral),
               loading: true,
             ),
 
             ConnectionError(:var reconnectTriggered) => BasicLayout(
               title: t.connection.errorTitle,
               description: t.connection.errorDescription,
+              icon: .new(data: Icons.error_outline_rounded, color: colorScheme.error),
               loading: reconnectTriggered,
               action: .new(label: t.connection.errorRetry, onPressed: cubit.reconnect),
             ),
@@ -44,11 +48,17 @@ class ConnectionPage extends StatelessWidget {
             ConnectedWithError(:var cause) => BasicLayout(
               title: cause.title,
               description: cause.description,
+              icon: .new(
+                data: Icons.warning_amber_rounded,
+                color: colorScheme.warning,
+                offset: Offset(0, -2),
+              ),
             ),
 
             Connected() => BasicLayout(
               title: t.connection.connectedTitle,
               description: t.connection.connectedDescription,
+              icon: .new(data: Icons.check_rounded, color: colorScheme.success),
             ),
           },
         ),

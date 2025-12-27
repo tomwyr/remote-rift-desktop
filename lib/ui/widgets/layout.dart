@@ -5,6 +5,7 @@ class BasicLayout extends StatelessWidget {
     super.key,
     this.title,
     this.description,
+    this.icon,
     this.loading = false,
     this.action,
     this.secondaryAction,
@@ -12,6 +13,7 @@ class BasicLayout extends StatelessWidget {
 
   final String? title;
   final String? description;
+  final BasicLayoutIcon? icon;
   final bool loading;
   final BasicLayoutAction? action;
   final BasicLayoutAction? secondaryAction;
@@ -25,30 +27,59 @@ class BasicLayout extends StatelessWidget {
         crossAxisAlignment: .stretch,
         mainAxisAlignment: .center,
         children: [
-          if (title case var title?) Text(title, style: Theme.of(context).textTheme.titleLarge),
+          if (icon case var icon?) _icon(icon),
           if (title != null || description != null) SizedBox(height: 8),
-          if (description case var description?)
-            Text(description, style: Theme.of(context).textTheme.bodyLarge),
+          if (title case var title?) Text(title, style: Theme.of(context).textTheme.titleMedium),
+          if (title != null && description != null) SizedBox(height: 2),
+          if (description case var description?) ...[Text(description)],
           if (loading) ...[
-            SizedBox(height: 12),
-            Center(child: CircularProgressIndicator()),
-            SizedBox(height: 12),
+            SizedBox(height: 16),
+            Center(
+              child: CircularProgressIndicator(constraints: .tight(.square(24)), strokeWidth: 3),
+            ),
           ] else ...[
-            if (action != null || secondaryAction != null) SizedBox(height: 12),
+            if (action != null || secondaryAction != null) SizedBox(height: 8),
             if (action case BasicLayoutAction(:var label, :var onPressed)) ...[
-              SizedBox(height: 12),
+              SizedBox(height: 8),
               ElevatedButton(onPressed: onPressed, child: Text(label)),
             ],
             if (secondaryAction case BasicLayoutAction(:var label, :var onPressed)) ...[
-              SizedBox(height: 12),
+              SizedBox(height: 8),
               OutlinedButton(onPressed: onPressed, child: Text(label)),
             ],
-            if (action != null || secondaryAction != null) SizedBox(height: 12),
           ],
         ],
       ),
     );
   }
+
+  Widget _icon(BasicLayoutIcon icon) {
+    Widget child = Icon(icon.data, size: 40, color: icon.color);
+
+    if (icon.offset case var offset?) {
+      child = Transform.translate(offset: offset, child: child);
+    }
+
+    return Center(
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
+        padding: .all(10),
+        decoration: BoxDecoration(
+          shape: .circle,
+          color: .alphaBlend(icon.color.withValues(alpha: 0.15), Colors.white),
+        ),
+        child: child,
+      ),
+    );
+  }
+}
+
+class BasicLayoutIcon {
+  BasicLayoutIcon({required this.data, required this.color, this.offset});
+
+  final IconData data;
+  final Color color;
+  final Offset? offset;
 }
 
 class BasicLayoutAction {
