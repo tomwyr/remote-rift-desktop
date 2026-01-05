@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
 
+import '../../app_manager.dart';
 import '../../common/assets.dart';
 import '../../i18n/strings.g.dart';
 
@@ -36,10 +35,10 @@ class AppTrayListener with TrayListener {
   void onTrayMenuItemClick(MenuItem menuItem) {
     if (menuItem.key case var key?) {
       switch (AppTrayEntry.fromKey(key)) {
-        case AppTrayEntry.open:
+        case .open:
           windowManager.show();
-        case AppTrayEntry.quit:
-          exit(0);
+        case .quit:
+          appManager.exit();
       }
     }
   }

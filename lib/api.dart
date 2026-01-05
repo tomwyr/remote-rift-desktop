@@ -1,6 +1,18 @@
 import 'package:remote_rift_connector_api/remote_rift_connector_api.dart';
 
+import 'app_manager.dart';
+
 Future<void> runConnectorApi(ConnectorApiConfig config) async {
+  final (:host, :port) = switch (config) {
+    .fromEnv => _parseEnvConfig(),
+  };
+  final api = RemoteRiftApi();
+  await api.run(host: host, port: port);
+  final broadcast = await api.register(port: port);
+  appManager.onExit(broadcast.dispose);
+}
+
+ConnectorApiAddress _parseEnvConfig() {
   const hostKey = 'API_HOST';
   const host = String.fromEnvironment(hostKey);
   if (host.isEmpty) {
@@ -17,7 +29,9 @@ Future<void> runConnectorApi(ConnectorApiConfig config) async {
     throw StateError('Invalid $portKey: "$portStr"');
   }
 
-  await RemoteRiftApi().run(host: host, port: port);
+  return (host: host, port: port);
 }
+
+typedef ConnectorApiAddress = ({String host, int port});
 
 enum ConnectorApiConfig { fromEnv }
