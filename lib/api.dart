@@ -6,9 +6,9 @@ Future<void> runConnectorApi(ConnectorApiConfig config) async {
   final (:host, :port) = switch (config) {
     .fromEnv => _parseEnvConfig(),
   };
-  final api = RemoteRiftApi();
-  await api.run(host: host, port: port);
-  final broadcast = await api.register(port: port);
+  final service = RemoteRiftApiService();
+  await service.run(host: host, port: port);
+  final broadcast = await service.register(port: port);
   appManager.onExit(broadcast.dispose);
 }
 
