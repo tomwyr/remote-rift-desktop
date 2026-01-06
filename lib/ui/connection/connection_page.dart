@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:remote_rift_connector_core/remote_rift_connector_core.dart';
+import 'package:remote_rift_foundation_ui/remote_rift_foundation_ui.dart';
 
 import '../../dependencies.dart';
 import '../../i18n/strings.g.dart';
-import '../app/app_theme.dart';
 import '../widgets/layout.dart';
-import '../widgets/lifecycle.dart';
 import 'connection_cubit.dart';
 import 'connection_state.dart';
 
@@ -20,7 +19,7 @@ class ConnectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.watch<ConnectionCubit>();
-    final colorScheme = AppThemeExtension.of(context).colorScheme;
+    final colorScheme = context.remoteRiftTheme.colorScheme;
 
     return Lifecycle(
       onInit: cubit.initialize,

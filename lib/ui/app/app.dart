@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:remote_rift_foundation_ui/remote_rift_foundation_ui.dart';
 
 import '../../i18n/strings.g.dart';
 import '../connection/connection_page.dart';
-import 'app_theme.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -11,8 +11,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: t.app.title,
-      theme: AppTheme.light(buttonVariant: .small),
-      builder: AppTheme.builder,
+      theme: RemoteRiftTheme.light(buttonVariant: .small),
+      builder: RemoteRiftTheme.builder,
       home: ConnectionPage.builder(),
     );
   }

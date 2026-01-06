@@ -4,9 +4,8 @@ import 'dart:ui';
 import 'package:cancelable_stream/cancelable_stream.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:remote_rift_connector_core/remote_rift_connector_core.dart';
+import 'package:remote_rift_foundation_utils/remote_rift_foundation_utils.dart';
 
-import '../../utils/retry_scheduler.dart';
-import '../../utils/stream_extensions.dart';
 import 'connection_state.dart';
 
 class ConnectionCubit extends Cubit<ConnectionState> {

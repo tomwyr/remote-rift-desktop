@@ -574,6 +574,20 @@ packages:
       relative: true
     source: path
     version: "0.0.0"
+  remote_rift_foundation_ui:
+    dependency: "direct main"
+    description:
+      path: "../remote-rift-foundation/packages/ui"
+      relative: true
+    source: path
+    version: "0.0.0"
+  remote_rift_foundation_utils:
+    dependency: "direct main"
+    description:
+      path: "../remote-rift-foundation/packages/utils"
+      relative: true
+    source: path
+    version: "0.0.0"
   screen_retriever:
     dependency: transitive
     description:
