@@ -17,24 +17,24 @@ dependencies:
   slang_flutter: ^4.8.0
   tray_manager: ^0.5.2
 
-  remote_rift_connector_api:
+  remote_rift_api:
     path: ../remote-rift-connector/packages/api
     # git:
     #   url: https://github.com/tomwyr/remote-rift-connector.git
     #   ref: 0.5.1
     #   path: packages/api
 
-  remote_rift_connector_core:
+  remote_rift_core:
     path: ../remote-rift-connector/packages/core
     # git:
     #   url: https://github.com/tomwyr/remote-rift-connector.git
     #   ref: 0.5.1
     #   path: packages/core
 
-  remote_rift_foundation_ui:
+  remote_rift_ui:
     path: ../remote-rift-foundation/packages/ui
 
-  remote_rift_foundation_utils:
+  remote_rift_utils:
     path: ../remote-rift-foundation/packages/utils
 
 dev_dependencies:

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:remote_rift_connector_core/remote_rift_connector_core.dart';
-import 'package:remote_rift_foundation_ui/remote_rift_foundation_ui.dart';
+import 'package:remote_rift_core/remote_rift_core.dart';
+import 'package:remote_rift_ui/remote_rift_ui.dart';
 
 import '../../dependencies.dart';
 import '../../i18n/strings.g.dart';

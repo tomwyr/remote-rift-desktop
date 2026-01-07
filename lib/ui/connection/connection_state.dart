@@ -1,5 +1,5 @@
 import 'package:draft/draft.dart';
-import 'package:remote_rift_connector_core/remote_rift_connector_core.dart';
+import 'package:remote_rift_core/remote_rift_core.dart';
 
 part 'connection_state.draft.dart';
 
