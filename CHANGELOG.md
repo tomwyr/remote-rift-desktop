@@ -1,3 +1,7 @@
+## [0.5.1] - 2026-01-10
+
+- Switched to using service registry from foundation
+
 ## [0.5.0] - 2026-01-09
 
 - Added displaying current state of the game client connection
