@@ -6,7 +6,7 @@ import 'ui/app/app_tray.dart';
 import 'ui/app/app_window.dart';
 
 void main() async {
-  runConnectorApi(addressSource: .systemLookup);
+  runConnectorApi(configSource: .systemLookup);
 
   WidgetsFlutterBinding.ensureInitialized();
   await AppWindow.configure();
