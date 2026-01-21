@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io' as os;
 
 final appManager = AppManager._();
@@ -5,10 +6,14 @@ final appManager = AppManager._();
 class AppManager {
   AppManager._();
 
-  final _exitListeners = <Future<void> Function()>{};
+  final _exitListeners = <FutureOr<void> Function()>{};
 
-  void onExit(Future<void> Function() listener) {
+  void addExitListener(FutureOr<void> Function() listener) {
     _exitListeners.add(listener);
+  }
+
+  void removeExitListener(FutureOr<void> Function() listener) {
+    _exitListeners.remove(listener);
   }
 
   void exit() async {

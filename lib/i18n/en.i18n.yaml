@@ -5,6 +5,15 @@ tray:
   openLabel: "Open"
   quitLabel: "Quit"
 
+service:
+  startingTitle: "Starting..."
+  startingDescription: "Initializing application components"
+  errorTitle: "Startup failed"
+  errorNoAddressDescription: "No network connection was found. Please check your internet connection and try again."
+  errorMultipleAddressesDescription: "Multiple network connections were detected. Please disconnect from extra networks and try again."
+  errorUnknownDescription: "The application couldn't start. This may be due to a missing network connection or another temporary issue."
+  errorRetry: "Restart"
+
 connection:
   connectingTitle: "Connecting..."
   connectingDescription: "Initializing communication with the game client."

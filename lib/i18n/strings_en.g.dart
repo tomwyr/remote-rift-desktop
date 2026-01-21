@@ -42,6 +42,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	// Translations
 	late final TranslationsAppEn app = TranslationsAppEn._(_root);
 	late final TranslationsTrayEn tray = TranslationsTrayEn._(_root);
+	late final TranslationsServiceEn service = TranslationsServiceEn._(_root);
 	late final TranslationsConnectionEn connection = TranslationsConnectionEn._(_root);
 	late final TranslationsGameErrorEn gameError = TranslationsGameErrorEn._(_root);
 }
@@ -71,6 +72,36 @@ class TranslationsTrayEn {
 
 	/// en: 'Quit'
 	String get quitLabel => 'Quit';
+}
+
+// Path: service
+class TranslationsServiceEn {
+	TranslationsServiceEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Starting...'
+	String get startingTitle => 'Starting...';
+
+	/// en: 'Initializing application components'
+	String get startingDescription => 'Initializing application components';
+
+	/// en: 'Startup failed'
+	String get errorTitle => 'Startup failed';
+
+	/// en: 'No network connection was found. Please check your internet connection and try again.'
+	String get errorNoAddressDescription => 'No network connection was found. Please check your internet connection and try again.';
+
+	/// en: 'Multiple network connections were detected. Please disconnect from extra networks and try again.'
+	String get errorMultipleAddressesDescription => 'Multiple network connections were detected. Please disconnect from extra networks and try again.';
+
+	/// en: 'The application couldn't start. This may be due to a missing network connection or another temporary issue.'
+	String get errorUnknownDescription => 'The application couldn\'t start. This may be due to a missing network connection or another temporary issue.';
+
+	/// en: 'Restart'
+	String get errorRetry => 'Restart';
 }
 
 // Path: connection
@@ -135,6 +166,13 @@ extension on Translations {
 			'app.title' => 'Remote Rift',
 			'tray.openLabel' => 'Open',
 			'tray.quitLabel' => 'Quit',
+			'service.startingTitle' => 'Starting...',
+			'service.startingDescription' => 'Initializing application components',
+			'service.errorTitle' => 'Startup failed',
+			'service.errorNoAddressDescription' => 'No network connection was found. Please check your internet connection and try again.',
+			'service.errorMultipleAddressesDescription' => 'Multiple network connections were detected. Please disconnect from extra networks and try again.',
+			'service.errorUnknownDescription' => 'The application couldn\'t start. This may be due to a missing network connection or another temporary issue.',
+			'service.errorRetry' => 'Restart',
 			'connection.connectingTitle' => 'Connecting...',
 			'connection.connectingDescription' => 'Initializing communication with the game client.',
 			'connection.connectedTitle' => 'Connected',
