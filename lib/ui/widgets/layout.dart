@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:remote_rift_ui/remote_rift_ui.dart';
 
 class BasicLayout extends StatelessWidget {
   const BasicLayout({
@@ -76,6 +77,14 @@ class BasicLayout extends StatelessWidget {
 
 class BasicLayoutIcon {
   BasicLayoutIcon({required this.data, required this.color, this.offset});
+
+  factory BasicLayoutIcon.warning(RemoteRiftColorScheme colorScheme) {
+    return .new(
+      data: Icons.warning_amber_rounded,
+      color: colorScheme.warning,
+      offset: Offset(0, -2),
+    );
+  }
 
   final IconData data;
   final Color color;

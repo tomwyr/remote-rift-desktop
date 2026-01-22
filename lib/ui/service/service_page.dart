@@ -48,12 +48,23 @@ class ServicePage extends StatelessWidget {
               loading: true,
             ),
 
-            StartupError(:var cause, :var reconnectTriggered) => BasicLayout(
+            StartupError(:var cause, :var restartTriggered) => BasicLayout(
               title: t.service.errorTitle,
               description: cause.description,
               icon: .new(data: Icons.error_outline_rounded, color: colorScheme.error),
-              loading: reconnectTriggered,
+              loading: restartTriggered,
               action: .new(label: t.service.errorRetry, onPressed: cubit.restart),
+            ),
+
+            PendingMultipleAddresses(:var starting) => BasicLayout(
+              title: t.service.pendingMultipleAddressesTitle,
+              description: t.service.pendingMultipleAddressesDescription,
+              icon: .warning(colorScheme),
+              action: .new(
+                label: t.service.pendingMultipleAddressesContinue,
+                onPressed: cubit.completeStartup,
+              ),
+              loading: starting,
             ),
 
             Started() => startedBuilder(context),

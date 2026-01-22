@@ -10,17 +10,51 @@ part of 'service_state.dart';
 // DraftGenerator
 // **************************************************************************
 
-class StartupErrorDraft implements StartupError {
+class PendingMultipleAddressesDraft implements PendingMultipleAddresses {
   // Mutable fields
-  ServiceErrorCause cause;
-  bool reconnectTriggered;
+  bool starting;
 
   // Getters and setters for nested draftable fields
 
-  StartupErrorDraft({required this.cause, required this.reconnectTriggered});
+  PendingMultipleAddressesDraft({required this.starting});
+
+  PendingMultipleAddresses save() =>
+      PendingMultipleAddresses(starting: starting);
+
+  @override
+  List<Object?> get props => save().props;
+  @override
+  bool? get stringify => save().stringify;
+  @override
+  int get hashCode => save().hashCode;
+
+  @override
+  String toString() => save().toString();
+}
+
+extension PendingMultipleAddressesDraftExtension on PendingMultipleAddresses {
+  PendingMultipleAddressesDraft draft() =>
+      PendingMultipleAddressesDraft(starting: this.starting);
+  PendingMultipleAddresses produce(
+    void Function(PendingMultipleAddressesDraft draft) producer,
+  ) {
+    final draft = this.draft();
+    producer(draft);
+    return draft.save();
+  }
+}
+
+class StartupErrorDraft implements StartupError {
+  // Mutable fields
+  ServiceErrorCause cause;
+  bool restartTriggered;
+
+  // Getters and setters for nested draftable fields
+
+  StartupErrorDraft({required this.cause, required this.restartTriggered});
 
   StartupError save() =>
-      StartupError(cause: cause, reconnectTriggered: reconnectTriggered);
+      StartupError(cause: cause, restartTriggered: restartTriggered);
 
   @override
   List<Object?> get props => save().props;
@@ -36,7 +70,7 @@ class StartupErrorDraft implements StartupError {
 extension StartupErrorDraftExtension on StartupError {
   StartupErrorDraft draft() => StartupErrorDraft(
     cause: this.cause,
-    reconnectTriggered: this.reconnectTriggered,
+    restartTriggered: this.restartTriggered,
   );
   StartupError produce(void Function(StartupErrorDraft draft) producer) {
     final draft = this.draft();

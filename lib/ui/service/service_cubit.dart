@@ -20,34 +20,40 @@ class ServiceCubit extends Cubit<ServiceState> {
     await _startService();
   }
 
+  void completeStartup() async {
+    final pendingState = switch (state) {
+      PendingMultipleAddresses state => state,
+      _ => throw StateError(
+        'Tried to complete startup while not in multiple addresses state (was ${state.runtimeType})',
+      ),
+    };
+
+    emit(pendingState.produce((draft) => draft.starting = true));
+    await _startService(resolveAddress: true);
+  }
+
   void restart() async {
     final startupError = switch (state) {
       StartupError state => state,
       _ => throw StateError('Tried to restart while not in error state (was ${state.runtimeType})'),
     };
 
-    emit(startupError.produce((draft) => draft.reconnectTriggered = true));
+    emit(startupError.produce((draft) => draft.restartTriggered = true));
     await _startService();
   }
 
-  Future<void> _startService() async {
+  Future<void> _startService({bool resolveAddress = false}) async {
     try {
-      await runner.run();
+      await runner.run(resolveAddressOnMany: resolveAddress);
       emit(Started());
     } catch (error) {
-      emit(StartupError(cause: _resolveErrorCause(error)));
-    }
-  }
-
-  ServiceErrorCause _resolveErrorCause(Object error) {
-    if (error case AddressLookupError()) {
-      return switch (error) {
-        AddressNotFound() => .addressNotFound,
-        MultipleAddressesFound() => .multipleAddressesFound,
+      final newState = switch (error) {
+        MultipleAddressesFound() => PendingMultipleAddresses(starting: false),
+        AddressNotFound() => StartupError(cause: .addressNotFound),
+        _ => StartupError(cause: .unknown),
       };
+      emit(newState);
     }
-
-    return .unknown;
   }
 
   Future<void> dispose() async {

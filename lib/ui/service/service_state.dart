@@ -17,24 +17,32 @@ class Starting extends ServiceState {}
 class Started extends ServiceState {}
 
 @draft
-class StartupError extends ServiceState {
-  StartupError({required this.cause, this.reconnectTriggered = false});
+class PendingMultipleAddresses extends ServiceState {
+  PendingMultipleAddresses({required this.starting});
 
-  final ServiceErrorCause cause;
-  final bool reconnectTriggered;
+  final bool starting;
 
   @override
-  List<Object?> get props => [cause, reconnectTriggered];
+  List<Object?> get props => [starting];
+}
+
+@draft
+class StartupError extends ServiceState {
+  StartupError({required this.cause, this.restartTriggered = false});
+
+  final ServiceErrorCause cause;
+  final bool restartTriggered;
+
+  @override
+  List<Object?> get props => [cause, restartTriggered];
 }
 
 enum ServiceErrorCause {
   addressNotFound,
-  multipleAddressesFound,
   unknown;
 
   String get description => switch (this) {
     .addressNotFound => t.service.errorNoAddressDescription,
-    .multipleAddressesFound => t.service.errorMultipleAddressesDescription,
     .unknown => t.service.errorUnknownDescription,
   };
 }

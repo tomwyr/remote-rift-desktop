@@ -47,11 +47,7 @@ class ConnectionPage extends StatelessWidget {
             ConnectedWithError(:var cause) => BasicLayout(
               title: cause.title,
               description: cause.description,
-              icon: .new(
-                data: Icons.warning_amber_rounded,
-                color: colorScheme.warning,
-                offset: Offset(0, -2),
-              ),
+              icon: .warning(colorScheme),
             ),
 
             Connected() => BasicLayout(
