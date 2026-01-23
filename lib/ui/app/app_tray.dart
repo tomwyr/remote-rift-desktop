@@ -32,6 +32,11 @@ class AppTrayListener with TrayListener {
   }
 
   @override
+  void onTrayIconRightMouseDown() async {
+    await trayManager.popUpContextMenu();
+  }
+
+  @override
   void onTrayMenuItemClick(MenuItem menuItem) {
     if (menuItem.key case var key?) {
       switch (AppTrayEntry.fromKey(key)) {

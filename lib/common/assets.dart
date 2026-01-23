@@ -1,4 +1,7 @@
+import 'dart:io';
+
 class Assets {
   static const logo = 'assets/logo.png';
-  static const iconTray = 'assets/icon_tray.png';
+  static String get iconTray =>
+      Platform.isWindows ? 'assets/icon_tray.ico' : 'assets/icon_tray.png';
 }
