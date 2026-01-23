@@ -34,6 +34,9 @@ To run the application on a computer:
 2. Run the downloaded application. You may need to grant permission to allow communication with devices on your local network.
 3. Start the League of Legends client and wait for the connection to be established.
 
+  > [!important]
+  > The service API address is resolved automatically and requires the user to be connected to a single network. At the moment, if multiple networks are available, the application will automatically select one network address to use.
+
 ## Development
 
 To run the project locally:
@@ -41,19 +44,12 @@ To run the project locally:
 1. Ensure Flutter is installed.
 2. Run `flutter pub get` to install dependencies.
 3. Run `dart run slang` to generate localization source files.
-4. Run the application using `flutter run --dart-define API_HOST=<api_host> --dart-define API_PORT=<api_port>` or an IDE.
-   
-  > [!important]
-  > The current implementation requires providing specific host and port values for the service API. The address will eventually be resolved automatically, removing the need to specify it manually when running the application.
-
+4. Run the application using `flutter run` or an IDE.
 5. After modifying source files, restart the application or use hot reload.
 
 ### Building project
 
-Run `flutter build windows --dart-define API_HOST=<api_host> --dart-define API_PORT=<api_port>` or `flutter build macos --dart-define API_HOST=<api_host> --dart-define API_PORT=<api_port>` to compile the application for the target platform.
-   
-  > [!important]
-  > The current implementation requires providing specific host and port values for the service API. The address will eventually be resolved automatically, removing the need to specify it manually when running the application.
+Run `flutter build windows` or `flutter build macos` to compile the application for the target platform.
 
 ### Localization
 
