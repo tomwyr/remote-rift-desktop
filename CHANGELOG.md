@@ -1,3 +1,7 @@
+## [0.6.2] - 2026-01-26
+
+- Updated internal dependencies
+
 ## [0.6.1] - 2026-01-26
 
 - Updated connector dependencies
