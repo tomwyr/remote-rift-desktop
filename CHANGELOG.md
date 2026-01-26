@@ -1,7 +1,11 @@
+## [0.6.1] - 2026-01-26
+
+- Updated connector dependencies
+
 ## [0.6.0] - 2026-01-23
 
 - Added support for automatic API address detection
-- Added displaying UI states when API address is unavailable or ambiguous 
+- Added displaying UI states when API address is unavailable or ambiguous
 - Improved tray and window behavior on Windows
 
 ## [0.5.1] - 2026-01-10
