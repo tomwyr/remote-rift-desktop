@@ -1,3 +1,8 @@
+## [0.6.3] - 2026-01-28
+
+- Improved displaying connection state when game client connection becomes unstable
+- Updated internal dependencies
+
 ## [0.6.2] - 2026-01-26
 
 - Updated internal dependencies
