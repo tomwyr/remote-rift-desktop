@@ -1,3 +1,7 @@
+## [0.6.4] - 2026-01-28
+
+- Fixed missing network entitlement
+
 ## [0.6.3] - 2026-01-28
 
 - Improved displaying connection state when game client connection becomes unstable
