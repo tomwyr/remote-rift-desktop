@@ -80,9 +80,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
         switch (response) {
           case RemoteRiftData(value: .ready):
-            if (state is! Connected) {
-              emit(Connected());
-            }
+            emit(Connected());
 
           case RemoteRiftData(value: .unavailable):
             emit(Connecting());
