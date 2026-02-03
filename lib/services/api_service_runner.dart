@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:remote_rift_api/remote_rift_api.dart';
 import 'package:remote_rift_ui/remote_rift_ui.dart';
 
-class RemoteRiftServiceRunner {
-  RemoteRiftServiceRunner({required this.service, required this.registry});
+class RemoteRiftApiServiceRunner {
+  RemoteRiftApiServiceRunner({required this.service, required this.registry});
 
   final RemoteRiftApiService service;
   final ServiceRegistry registry;

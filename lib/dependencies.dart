@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:remote_rift_api/remote_rift_api.dart';
 import 'package:remote_rift_core/remote_rift_core.dart';
 
-import 'services/service_runner.dart';
+import 'services/api_service_runner.dart';
 import 'ui/connection/connection_cubit.dart';
 import 'ui/service/service_cubit.dart';
 
@@ -11,6 +11,6 @@ class Dependencies {
       ConnectionCubit(connector: RemoteRiftConnector());
 
   static ServiceCubit serviceCubit(BuildContext context) => ServiceCubit(
-    runner: RemoteRiftServiceRunner(service: RemoteRiftApiService(), registry: .remoteRift()),
+    runner: RemoteRiftApiServiceRunner(service: RemoteRiftApiService(), registry: .remoteRift()),
   );
 }

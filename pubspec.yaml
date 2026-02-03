@@ -13,6 +13,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   cancelable_stream: ^1.0.0
   draft: ^0.0.12
+  http: ^1.6.0
   slang: ^4.8.1
   slang_flutter: ^4.8.0
   tray_manager: ^0.5.2
@@ -41,6 +42,7 @@ dependencies:
       url: https://github.com/tomwyr/remote-rift-foundation.git
       ref: 0.8.1
       path: packages/utils
+  package_info_plus: ^9.0.0
 
 dev_dependencies:
   flutter_test:

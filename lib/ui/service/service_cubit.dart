@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:remote_rift_api/remote_rift_api.dart';
 
-import '../../services/service_runner.dart';
+import '../../services/api_service_runner.dart';
 import 'service_state.dart';
 
 class ServiceCubit extends Cubit<ServiceState> {
   ServiceCubit({required this.runner}) : super(Initial());
 
-  final RemoteRiftServiceRunner runner;
+  final RemoteRiftApiServiceRunner runner;
 
   void initialize() async {
     if (state is! Initial) {
