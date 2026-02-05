@@ -8,13 +8,16 @@ class UpdateService {
 
   final GitHubReleases releases;
 
-  Future<bool> isUpdateAvailable() async {
+  Future<Version?> checkUpdateAvailable() async {
     final latest = await _getLatestVersion();
     final current = await _getCurrentVersion();
-    return latest.isGreaterThan(current);
+    if (latest.isGreaterThan(current)) {
+      return latest;
+    }
+    return null;
   }
 
-  Future<void> installUpdate() async {
+  Future<void> installUpdate({required Version version}) async {
     //
   }
 
