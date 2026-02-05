@@ -1,6 +1,18 @@
 app:
   title: "Remote Rift"
 
+update:
+  installTooltip: "Update"
+  availableTitle: "Update Available"
+  availableDescription: "A new version of the application is available. Update now to access the latest features."
+  availableConfirmLabel: "Update"
+  availableCancelLabel: "Later"
+  inProgressTitle: "Updating..."
+  inProgressDescription: "Downloading and installing the update. This may take a moment."
+  errorTitle: "Update Failed"
+  errorDescription: "An error occurred while updating. Please try again."
+  errorRetryLabel: "Retry"
+
 tray:
   openLabel: "Open"
   quitLabel: "Quit"

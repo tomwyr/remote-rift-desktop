@@ -14,6 +14,10 @@ class UpdateService {
     return latest.isGreaterThan(current);
   }
 
+  Future<void> installUpdate() async {
+    //
+  }
+
   Future<Version> _getLatestVersion() async {
     try {
       final latestTag = await releases.getLatestReleaseTag();

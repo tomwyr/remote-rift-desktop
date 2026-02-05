@@ -41,6 +41,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 
 	// Translations
 	late final TranslationsAppEn app = TranslationsAppEn._(_root);
+	late final TranslationsUpdateEn update = TranslationsUpdateEn._(_root);
 	late final TranslationsTrayEn tray = TranslationsTrayEn._(_root);
 	late final TranslationsServiceEn service = TranslationsServiceEn._(_root);
 	late final TranslationsConnectionEn connection = TranslationsConnectionEn._(_root);
@@ -57,6 +58,45 @@ class TranslationsAppEn {
 
 	/// en: 'Remote Rift'
 	String get title => 'Remote Rift';
+}
+
+// Path: update
+class TranslationsUpdateEn {
+	TranslationsUpdateEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Update'
+	String get installTooltip => 'Update';
+
+	/// en: 'Update Available'
+	String get availableTitle => 'Update Available';
+
+	/// en: 'A new version of the application is available. Update now to access the latest features.'
+	String get availableDescription => 'A new version of the application is available. Update now to access the latest features.';
+
+	/// en: 'Update'
+	String get availableConfirmLabel => 'Update';
+
+	/// en: 'Later'
+	String get availableCancelLabel => 'Later';
+
+	/// en: 'Updating...'
+	String get inProgressTitle => 'Updating...';
+
+	/// en: 'Downloading and installing the update. This may take a moment.'
+	String get inProgressDescription => 'Downloading and installing the update. This may take a moment.';
+
+	/// en: 'Update Failed'
+	String get errorTitle => 'Update Failed';
+
+	/// en: 'An error occurred while updating. Please try again.'
+	String get errorDescription => 'An error occurred while updating. Please try again.';
+
+	/// en: 'Retry'
+	String get errorRetryLabel => 'Retry';
 }
 
 // Path: tray
@@ -170,6 +210,16 @@ extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Remote Rift',
+			'update.installTooltip' => 'Update',
+			'update.availableTitle' => 'Update Available',
+			'update.availableDescription' => 'A new version of the application is available. Update now to access the latest features.',
+			'update.availableConfirmLabel' => 'Update',
+			'update.availableCancelLabel' => 'Later',
+			'update.inProgressTitle' => 'Updating...',
+			'update.inProgressDescription' => 'Downloading and installing the update. This may take a moment.',
+			'update.errorTitle' => 'Update Failed',
+			'update.errorDescription' => 'An error occurred while updating. Please try again.',
+			'update.errorRetryLabel' => 'Retry',
 			'tray.openLabel' => 'Open',
 			'tray.quitLabel' => 'Quit',
 			'service.startingTitle' => 'Starting...',

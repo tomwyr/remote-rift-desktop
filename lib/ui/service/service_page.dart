@@ -51,7 +51,7 @@ class ServicePage extends StatelessWidget {
             StartupError(:var cause, :var restartTriggered) => BasicLayout(
               title: t.service.errorTitle,
               description: cause.description,
-              icon: .new(data: Icons.error_outline_rounded, color: colorScheme.error),
+              icon: .error(colorScheme),
               loading: restartTriggered,
               action: .new(label: t.service.errorRetry, onPressed: cubit.restart),
             ),

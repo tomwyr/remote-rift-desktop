@@ -39,7 +39,7 @@ class ConnectionPage extends StatelessWidget {
             ConnectionError(:var reconnectTriggered) => BasicLayout(
               title: t.connection.errorTitle,
               description: t.connection.errorDescription,
-              icon: .new(data: Icons.error_outline_rounded, color: colorScheme.error),
+              icon: .error(colorScheme),
               loading: reconnectTriggered,
               action: .new(label: t.connection.errorRetry, onPressed: cubit.reconnect),
             ),

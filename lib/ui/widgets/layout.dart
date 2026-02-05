@@ -86,6 +86,14 @@ class BasicLayoutIcon {
     );
   }
 
+  factory BasicLayoutIcon.error(RemoteRiftColorScheme colorScheme) {
+    return .new(data: Icons.error_outline_rounded, color: colorScheme.error);
+  }
+
+  factory BasicLayoutIcon.update(RemoteRiftColorScheme colorScheme) {
+    return .new(data: Icons.system_update_alt, color: colorScheme.success);
+  }
+
   final IconData data;
   final Color color;
   final Offset? offset;

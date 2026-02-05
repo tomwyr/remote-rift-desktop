@@ -5,6 +5,8 @@ import 'package:http/http.dart';
 class GitHubReleases {
   GitHubReleases({required this.repoName, required this.userName});
 
+  GitHubReleases.remoteRift() : repoName = 'remote-rift-desktop', userName = 'tomwyr';
+
   final String repoName;
   final String userName;
 
