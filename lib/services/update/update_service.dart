@@ -1,12 +1,16 @@
+import 'dart:io';
+
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:remote_rift_utils/remote_rift_utils.dart';
 
 import 'github_releases.dart';
+import 'update_runner.dart';
 
 class UpdateService {
-  UpdateService({required this.releases});
+  UpdateService({required this.releases, required this.updateRunner});
 
   final GitHubReleases releases;
+  final UpdateRunner updateRunner;
 
   Future<Version?> checkUpdateAvailable() async {
     final latest = await _getLatestVersion();
@@ -18,7 +22,17 @@ class UpdateService {
   }
 
   Future<void> installUpdate({required Version version}) async {
-    //
+    final downloadPath = await releases.downloadRelease(releaseTag: version.stringValue);
+    if (downloadPath == null) {
+      throw UpdateServiceError.updateDownloadFailed;
+    }
+
+    try {
+      await updateRunner.startProcess(archivePath: downloadPath);
+      exit(0);
+    } catch (_) {
+      UpdateServiceError.installerStartupFailed;
+    }
   }
 
   Future<Version> _getLatestVersion() async {
@@ -43,4 +57,9 @@ class UpdateService {
   }
 }
 
-enum UpdateServiceError implements Exception { latestVersionUnavailable, currentVersionUnavailable }
+enum UpdateServiceError implements Exception {
+  latestVersionUnavailable,
+  currentVersionUnavailable,
+  updateDownloadFailed,
+  installerStartupFailed,
+}
