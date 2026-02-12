@@ -20,7 +20,10 @@ dependencies:
   equatable: ^2.0.8
   package_info_plus: ^9.0.0
   path: ^1.9.1
-  archive: ^4.0.7
+  hooks: ^1.0.1
+
+  remote_rift_desktop_updater:
+    path: packages/updater
 
   remote_rift_api:
     git:
