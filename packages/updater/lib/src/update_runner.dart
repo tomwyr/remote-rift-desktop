@@ -89,11 +89,13 @@ class WindowsUpdateRunner extends UpdateRunner {
 
   final String executableName;
 
+  static final executableFileName = 'run_update.exe';
+
   @override
   List<String> get updateExtraArgs => [executableName];
 
   @override
-  String get updaterFileName => 'run_update.exe';
+  String get updaterFileName => executableFileName;
 
   @override
   UpdateRunnerPaths getUpdatePaths(String sourcePath, String targetPath) {
@@ -118,10 +120,12 @@ class MacosUpdateRunner extends UpdateRunner {
     super.fileUtils = const FileUtils(),
   });
 
+  static final executableFileName = 'run_update';
+
   final String bundleName;
 
   @override
-  String get updaterFileName => 'run_update';
+  String get updaterFileName => executableFileName;
 
   @override
   List<String> get updateExtraArgs => [bundleName];

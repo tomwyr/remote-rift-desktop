@@ -2,17 +2,28 @@ import 'dart:io';
 
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:remote_rift_desktop_updater/remote_rift_desktop_updater.dart';
+import 'package:remote_rift_desktop_updater/src/platform.dart';
 import 'package:remote_rift_utils/remote_rift_utils.dart';
 
-class UpdateService {
-  UpdateService({
-    required this.releases,
-    required this.updateRunner,
-  });
+abstract interface class ApplicationUpdater {
+  Future<void> installUpdate({required Version version});
+  Future<Version?> checkUpdateAvailable();
+}
+
+class DesktopUpdater implements ApplicationUpdater {
+  DesktopUpdater({required this.releases, required this.updateRunner});
 
   final GitHubReleases releases;
   final UpdateRunner updateRunner;
 
+  static String get executableFileName {
+    return switch (targetPlatform) {
+      .windows => WindowsUpdateRunner.executableFileName,
+      .macos => MacosUpdateRunner.executableFileName,
+    };
+  }
+
+  @override
   Future<Version?> checkUpdateAvailable() async {
     return Version.parse('0.6.4');
     final latest = await _getLatestVersion();
@@ -23,17 +34,18 @@ class UpdateService {
     return null;
   }
 
+  @override
   Future<void> installUpdate({required Version version}) async {
     final downloadPath = await releases.downloadRelease(releaseTag: version.stringValue);
     if (downloadPath == null) {
-      throw UpdateServiceError.updateDownloadFailed;
+      throw ApplicationUpdaterError.updateDownloadFailed;
     }
 
     try {
       await updateRunner.startProcess(archivePath: downloadPath);
       exit(0);
     } catch (_) {
-      UpdateServiceError.installerStartupFailed;
+      throw ApplicationUpdaterError.installerStartupFailed;
     }
   }
 
@@ -41,11 +53,11 @@ class UpdateService {
     try {
       final latestTag = await releases.getLatestReleaseTag();
       if (latestTag == null) {
-        throw UpdateServiceError.latestVersionUnavailable;
+        throw ApplicationUpdaterError.latestVersionUnavailable;
       }
       return .parse(latestTag);
     } catch (_) {
-      throw UpdateServiceError.latestVersionUnavailable;
+      throw ApplicationUpdaterError.latestVersionUnavailable;
     }
   }
 
@@ -54,12 +66,12 @@ class UpdateService {
       final info = await PackageInfo.fromPlatform();
       return .parse(info.version);
     } catch (_) {
-      throw UpdateServiceError.currentVersionUnavailable;
+      throw ApplicationUpdaterError.currentVersionUnavailable;
     }
   }
 }
 
-enum UpdateServiceError implements Exception {
+enum ApplicationUpdaterError implements Exception {
   latestVersionUnavailable,
   currentVersionUnavailable,
   updateDownloadFailed,

@@ -18,7 +18,7 @@ class Dependencies {
   );
 
   static UpdateCubit updateCubit(BuildContext context) => UpdateCubit(
-    updateService: UpdateService(
+    updater: DesktopUpdater(
       releases: GitHubReleases(
         repoName: 'remote-rift-desktop',
         userName: 'tomwyr',

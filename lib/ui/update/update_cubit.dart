@@ -5,13 +5,13 @@ import 'package:remote_rift_utils/remote_rift_utils.dart';
 import 'update_state.dart';
 
 class UpdateCubit extends Cubit<UpdateState> {
-  UpdateCubit({required this.updateService}) : super(Initial());
+  UpdateCubit({required this.updater}) : super(Initial());
 
-  final UpdateService updateService;
+  final ApplicationUpdater updater;
 
   void initialize() async {
     _assertInitializeState();
-    final updatableVersion = await updateService.checkUpdateAvailable();
+    final updatableVersion = await updater.checkUpdateAvailable();
     if (updatableVersion != null) {
       emit(UpdateAvailable(version: updatableVersion));
     } else {
@@ -23,7 +23,7 @@ class UpdateCubit extends Cubit<UpdateState> {
     final version = _assertInstallUpdateState();
     try {
       emit(UpdateInProgress());
-      await updateService.installUpdate(version: version);
+      await updater.installUpdate(version: version);
     } catch (_) {
       emit(UpdateError(version: version));
     }
