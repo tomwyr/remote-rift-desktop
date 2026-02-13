@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:remote_rift_desktop_updater/remote_rift_desktop_updater.dart';
-import 'package:remote_rift_desktop_updater/src/platform.dart';
 import 'package:remote_rift_utils/remote_rift_utils.dart';
 
 abstract interface class ApplicationUpdater {
@@ -15,13 +14,6 @@ class DesktopUpdater implements ApplicationUpdater {
 
   final GitHubReleases releases;
   final UpdateRunner updateRunner;
-
-  static String get executableFileName {
-    return switch (targetPlatform) {
-      .windows => WindowsUpdateRunner.executableFileName,
-      .macos => MacosUpdateRunner.executableFileName,
-    };
-  }
 
   @override
   Future<Version?> checkUpdateAvailable() async {
