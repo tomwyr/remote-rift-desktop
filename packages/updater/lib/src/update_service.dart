@@ -4,14 +4,14 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:remote_rift_desktop_updater/remote_rift_desktop_updater.dart';
 import 'package:remote_rift_utils/remote_rift_utils.dart';
 
-import 'github_releases.dart';
-
 class UpdateService {
-  UpdateService({required this.releases, required this.updateRunner, required this.fileUtils});
+  UpdateService({
+    required this.releases,
+    required this.updateRunner,
+  });
 
   final GitHubReleases releases;
   final UpdateRunner updateRunner;
-  final FileUtils fileUtils;
 
   Future<Version?> checkUpdateAvailable() async {
     return Version.parse('0.6.4');
@@ -30,8 +30,7 @@ class UpdateService {
     }
 
     try {
-      final applicationPath = fileUtils.getApplicationDirectory();
-      await updateRunner.startProcess(archivePath: downloadPath, applicationPath: applicationPath);
+      await updateRunner.startProcess(archivePath: downloadPath);
       exit(0);
     } catch (_) {
       UpdateServiceError.installerStartupFailed;

@@ -6,24 +6,39 @@ import 'file_utils.dart';
 import 'platform.dart';
 
 abstract class UpdateRunner implements PlatformUpdateRunner {
-  UpdateRunner({required this.fileUtils});
+  UpdateRunner({required this.applicationLabel, required this.fileUtils});
 
-  factory UpdateRunner.platform({required FileUtils fileUtils}) {
+  factory UpdateRunner.platform({
+    required String applicationLabel,
+    required String macosBundleName,
+    required String windowsExecutableName,
+    FileUtils fileUtils = const FileUtils(),
+  }) {
     return switch (targetPlatform) {
-      .windows => WindowsUpdateRunner(fileUtils: fileUtils),
-      .macos => MacosUpdateRunner(fileUtils: fileUtils),
+      .windows => WindowsUpdateRunner(
+        applicationLabel: applicationLabel,
+        executableName: windowsExecutableName,
+        fileUtils: fileUtils,
+      ),
+      .macos => MacosUpdateRunner(
+        applicationLabel: applicationLabel,
+        bundleName: macosBundleName,
+        fileUtils: fileUtils,
+      ),
     };
   }
 
+  final String applicationLabel;
   final FileUtils fileUtils;
 
-  Future<void> startProcess({required String archivePath, required String applicationPath}) async {
+  Future<void> startProcess({required String archivePath}) async {
+    final applicationPath = fileUtils.getApplicationDirectory();
     final updateDirPath = Directory.systemTemp.path;
     final updaterPath = await _copyUpdater(updateDirPath);
-    await Process.start(updaterPath, [
-      archivePath,
-      applicationPath,
-    ], workingDirectory: updateDirPath);
+
+    final updateArgs = [archivePath, applicationPath, applicationLabel, ...updateExtraArgs];
+
+    await Process.start(updaterPath, updateArgs, workingDirectory: updateDirPath);
   }
 
   Future<void> run({required String archivePath, required String applicationPath}) async {
@@ -52,7 +67,7 @@ abstract class UpdateRunner implements PlatformUpdateRunner {
       throw Exception('Updater executable not found at path: $updaterPath');
     }
 
-    final updateTempPath = path.join(targetDirPath, 'remote_rift_$updaterFileName');
+    final updateTempPath = path.join(targetDirPath, '${applicationLabel}_$updaterFileName');
     await updater.copy(updateTempPath);
     return updateTempPath;
   }
@@ -60,12 +75,22 @@ abstract class UpdateRunner implements PlatformUpdateRunner {
 
 abstract interface class PlatformUpdateRunner {
   String get updaterFileName;
+  List<String> get updateExtraArgs;
   UpdateRunnerPaths getUpdatePaths(String sourcePath, String targetPath);
   Future<void> runAppExecutable(String executablePath);
 }
 
 class WindowsUpdateRunner extends UpdateRunner {
-  WindowsUpdateRunner({required super.fileUtils});
+  WindowsUpdateRunner({
+    required super.applicationLabel,
+    required this.executableName,
+    super.fileUtils = const FileUtils(),
+  });
+
+  final String executableName;
+
+  @override
+  List<String> get updateExtraArgs => [executableName];
 
   @override
   String get updaterFileName => 'run_update.exe';
@@ -76,7 +101,7 @@ class WindowsUpdateRunner extends UpdateRunner {
       source: sourcePath,
       target: targetPath,
       backup: '$targetPath.bak',
-      executable: path.join(targetPath, 'RemoteRift.exe'),
+      executable: path.join(targetPath, executableName),
     );
   }
 
@@ -87,15 +112,24 @@ class WindowsUpdateRunner extends UpdateRunner {
 }
 
 class MacosUpdateRunner extends UpdateRunner {
-  MacosUpdateRunner({required super.fileUtils});
+  MacosUpdateRunner({
+    required super.applicationLabel,
+    required this.bundleName,
+    super.fileUtils = const FileUtils(),
+  });
+
+  final String bundleName;
 
   @override
   String get updaterFileName => 'run_update';
 
   @override
+  List<String> get updateExtraArgs => [bundleName];
+
+  @override
   UpdateRunnerPaths getUpdatePaths(String sourcePath, String targetPath) {
     return .new(
-      source: '$sourcePath/Remote Rift.app',
+      source: path.join(sourcePath, bundleName),
       target: targetPath,
       backup: '$targetPath.bak',
       executable: targetPath,

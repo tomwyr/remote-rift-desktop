@@ -6,13 +6,18 @@ import 'package:path/path.dart';
 
 import 'platform.dart';
 
-class GitHubReleases {
-  GitHubReleases({required this.repoName, required this.userName});
+typedef GitHubNameResolver = String Function(String releaseTag);
 
-  GitHubReleases.remoteRift() : repoName = 'remote-rift-desktop', userName = 'tomwyr';
+class GitHubReleases {
+  GitHubReleases({
+    required this.repoName,
+    required this.userName,
+    required this.resolveArtifactName,
+  });
 
   final String repoName;
   final String userName;
+  final GitHubNameResolver resolveArtifactName;
 
   late final _baseUrl = 'https://github.com/$userName/$repoName';
   late final _apiBaseUrl = 'https://api.github.com/repos/$userName/$repoName';
@@ -34,24 +39,16 @@ class GitHubReleases {
       .macos =>
         '/Users/tomwyr/Library/Containers/com.tomwyr.remoterift.desktop/Data/tmp/RemoteRift-0.6.4-macos.zip',
     };
-    final platform = _getPlatformName();
-    final fileName = 'RemoteRift-$releaseTag-$platform.zip';
-    final url = '$_baseUrl/releases/download/$releaseTag/$fileName';
+    final artifactName = resolveArtifactName(releaseTag);
+    final url = '$_baseUrl/releases/download/$releaseTag/$artifactName';
 
     final response = await get(Uri.parse(url));
     if (response.statusCode != 200) {
       return null;
     }
 
-    final downloadPath = join(Directory.systemTemp.path, fileName);
+    final downloadPath = join(Directory.systemTemp.path, artifactName);
     await File(downloadPath).writeAsBytes(response.bodyBytes);
     return downloadPath;
-  }
-
-  String _getPlatformName() {
-    return switch (targetPlatform) {
-      .windows => 'windows',
-      .macos => 'macos',
-    };
   }
 }
