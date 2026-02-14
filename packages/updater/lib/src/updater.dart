@@ -17,7 +17,6 @@ class DesktopUpdater implements ApplicationUpdater {
 
   @override
   Future<Version?> checkUpdateAvailable() async {
-    return Version.parse('0.6.4');
     final latest = await _getLatestVersion();
     final current = await _getCurrentVersion();
     if (latest.isGreaterThan(current)) {
