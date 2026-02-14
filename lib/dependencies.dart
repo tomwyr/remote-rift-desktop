@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:remote_rift_api/remote_rift_api.dart';
 import 'package:remote_rift_core/remote_rift_core.dart';
@@ -5,6 +6,7 @@ import 'package:remote_rift_desktop_updater/remote_rift_desktop_updater.dart';
 
 import 'common/platform.dart';
 import 'services/api_service_runner.dart';
+import 'services/noop_updater.dart';
 import 'ui/connection/connection_cubit.dart';
 import 'ui/service/service_cubit.dart';
 import 'ui/update/update_cubit.dart';
@@ -17,8 +19,13 @@ class Dependencies {
     runner: RemoteRiftApiServiceRunner(service: RemoteRiftApiService(), registry: .remoteRift()),
   );
 
-  static UpdateCubit updateCubit(BuildContext context) => UpdateCubit(
-    updater: DesktopUpdater(
+  static UpdateCubit updateCubit(BuildContext context) {
+    // Disable updates in debug mode to avoid hitting GitHub API rate limits.
+    return UpdateCubit(updater: kDebugMode ? NoopUpdater() : desktupUpdater());
+  }
+
+  static ApplicationUpdater desktupUpdater() {
+    return DesktopUpdater(
       releases: GitHubReleases(
         repoName: 'remote-rift-desktop',
         userName: 'tomwyr',
@@ -35,6 +42,6 @@ class Dependencies {
         macosBundleName: 'Remote Rift.app',
         windowsExecutableName: 'RemoteRift.exe',
       ),
-    ),
-  );
+    );
+  }
 }
