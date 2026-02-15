@@ -616,17 +616,21 @@ packages:
   remote_rift_api:
     dependency: "direct main"
     description:
-      path: "../remote-rift-connector/packages/api"
-      relative: true
-    source: path
-    version: "0.11.2"
+      path: "packages/api"
+      ref: "0.12.0"
+      resolved-ref: "088533b1ac34acf7b3bb9a75fd59a324de04df13"
+      url: "https://github.com/tomwyr/remote-rift-connector.git"
+    source: git
+    version: "0.12.0"
   remote_rift_core:
     dependency: "direct main"
     description:
-      path: "../remote-rift-connector/packages/core"
-      relative: true
-    source: path
-    version: "0.11.2"
+      path: "packages/core"
+      ref: "0.12.0"
+      resolved-ref: "088533b1ac34acf7b3bb9a75fd59a324de04df13"
+      url: "https://github.com/tomwyr/remote-rift-connector.git"
+    source: git
+    version: "0.12.0"
   remote_rift_desktop_updater:
     dependency: "direct main"
     description:
@@ -637,17 +641,21 @@ packages:
   remote_rift_ui:
     dependency: "direct main"
     description:
-      path: "../remote-rift-foundation/packages/ui"
-      relative: true
-    source: path
-    version: "0.8.1"
+      path: "packages/ui"
+      ref: "0.9.0"
+      resolved-ref: "3baff34c5581c7d7b91fc1cc4914f14863d47d97"
+      url: "https://github.com/tomwyr/remote-rift-foundation.git"
+    source: git
+    version: "0.9.0"
   remote_rift_utils:
     dependency: "direct main"
     description:
-      path: "../remote-rift-foundation/packages/utils"
-      relative: true
-    source: path
-    version: "0.8.1"
+      path: "packages/utils"
+      ref: "0.9.0"
+      resolved-ref: "3baff34c5581c7d7b91fc1cc4914f14863d47d97"
+      url: "https://github.com/tomwyr/remote-rift-foundation.git"
+    source: git
+    version: "0.9.0"
   screen_retriever:
     dependency: transitive
     description:
