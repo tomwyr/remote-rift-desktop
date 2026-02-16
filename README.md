@@ -18,6 +18,15 @@ The project is organized into the following main layers:
 
 When launched, the application starts the Remote Rift API and registers a service entry via mDNS on the local network. The application then displays a window with the UI and adds an entry to the system tray.
 
+### Application updates
+
+The application supports runtime updates through the `application_updater` package, which checks for newer releases on GitHub. Users are notified of available updates, which are installed upon confirmation.
+
+For more details, refer to the [Application Updater documentation](packages/application_updater/README.md).
+
+> [!note]
+> The updater executable is automatically built and bundled with the application using the [build.dart](hook/build.dart) hook script.
+
 ### Dependencies
 
 This section describes selected third-party packages used throughout the application:
@@ -25,7 +34,7 @@ This section describes selected third-party packages used throughout the applica
 - [bloc](https://pub.dev/packages/bloc) - State management using blocs and cubits, providing clear separation of UI and state logic with minimal boilerplate.
 
 - [slang](https://pub.dev/packages/slang) - Localization via strongly typed code generation from YAML files, with support for advanced translation features.
- 
+
 ## Usage
 
 To run the application on a computer:
@@ -34,8 +43,8 @@ To run the application on a computer:
 2. Run the downloaded application. You may need to grant permission to allow communication with devices on your local network.
 3. Start the League of Legends client and wait for the connection to be established.
 
-  > [!important]
-  > The service API address is resolved automatically and requires the user to be connected to a single network. At the moment, if multiple networks are available, the application will automatically select one network address to use.
+> [!important]
+> The service API address is resolved automatically and requires the user to be connected to a single network. At the moment, if multiple networks are available, the application will automatically select one network address to use.
 
 ## Development
 

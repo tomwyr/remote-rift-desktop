@@ -4,8 +4,8 @@ A Dart package for enabling runtime application updates.
 
 The package currently supports Windows and macOS desktop platforms and uses GitHub Releases as the source for distributing application updates.
 
-> [!NOTE]
-> GitHub API requests are unauthenticated and may be subject to rate limits. For more information, see the [GitHub API rate limits](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api) documentation.
+> [!note]
+> GitHub API requests are unauthenticated and may be subject to rate limits. For more information, see the [GitHub API rate limits documentation](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api).
 
 ## Features
 
@@ -32,7 +32,7 @@ dart build cli bin/run_update.dart
 
 4. Bundle the resulting executable with your application as an asset.
 
-> [!IMPORTANT]
+> [!important]
 > The updater executable must be bundled with your application and accessible at runtime.
 
 ## Configuration
