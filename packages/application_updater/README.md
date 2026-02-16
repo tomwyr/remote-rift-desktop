@@ -26,9 +26,9 @@ dependencies:
 
 3. Build the updater executable by running:
 
-  ```sh
-  dart build cli bin/run_update.dart
-  ```
+```sh
+dart build cli bin/run_update.dart
+```
 
 4. Bundle the resulting executable with your application as an asset.
 
@@ -74,6 +74,7 @@ await updater.installUpdate(version: latestVersion);
 ```
 
 The update installation process performs the following steps:
+
 - Closes the running application
 - Replaces application files with the downloaded release
 - Restarts the application after successful installation

@@ -1,5 +1,5 @@
-import 'package:remote_rift_desktop_updater/src/platform.dart';
-import 'package:remote_rift_desktop_updater/src/update_runner.dart';
+import 'package:application_updater/src/platform.dart';
+import 'package:application_updater/src/update_runner.dart';
 
 void main(List<String> args) async {
   final archivePath = readArg(args, 0, 'archive path');

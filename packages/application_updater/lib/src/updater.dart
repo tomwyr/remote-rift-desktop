@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:remote_rift_desktop_updater/remote_rift_desktop_updater.dart';
 import 'package:remote_rift_utils/remote_rift_utils.dart';
+
+import 'github_releases.dart';
+import 'update_runner.dart';
 
 abstract interface class ApplicationUpdater {
   Future<void> installUpdate({required Version version});

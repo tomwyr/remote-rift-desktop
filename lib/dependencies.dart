@@ -1,8 +1,8 @@
+import 'package:application_updater/application_updater.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:remote_rift_api/remote_rift_api.dart';
 import 'package:remote_rift_core/remote_rift_core.dart';
-import 'package:remote_rift_desktop_updater/remote_rift_desktop_updater.dart';
 
 import 'common/platform.dart';
 import 'services/api_service_runner.dart';

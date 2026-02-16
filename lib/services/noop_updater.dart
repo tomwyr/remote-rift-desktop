@@ -1,4 +1,4 @@
-import 'package:remote_rift_desktop_updater/remote_rift_desktop_updater.dart';
+import 'package:application_updater/application_updater.dart';
 import 'package:remote_rift_utils/remote_rift_utils.dart';
 
 class NoopUpdater implements ApplicationUpdater {

@@ -22,8 +22,8 @@ dependencies:
   path: ^1.9.1
   hooks: ^1.0.1
 
-  remote_rift_desktop_updater:
-    path: packages/updater
+  application_updater:
+    path: packages/application_updater
 
   remote_rift_api:
     git:
