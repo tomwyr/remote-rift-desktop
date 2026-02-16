@@ -1,39 +1,87 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Application Updater
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
+A Dart package for enabling runtime application updates.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages). 
--->
+The package currently supports Windows and macOS desktop platforms and uses GitHub Releases as the source for distributing application updates.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+> [!NOTE]
+> GitHub API requests are unauthenticated and may be subject to rate limits. For more information, see the [GitHub API rate limits](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api) documentation.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Check if a newer version is available
+- Download and install the latest release.
+- Backup and restore application if the update fails.
 
-## Getting started
+## Installation
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+1. Add the package to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  application_updater:
+```
+
+2. Run `dart pub get` to install dependencies.
+
+3. Build the updater executable by running:
+
+  ```sh
+  dart build cli bin/run_update.dart
+  ```
+
+4. Bundle the resulting executable with your application as an asset.
+
+> [!IMPORTANT]
+> The updater executable must be bundled with your application and accessible at runtime.
+
+## Configuration
+
+Configure the updater with your GitHub repository details and platform-specific settings:
+
+```dart
+import 'package:application_updater/application_updater.dart';
+
+final updater = DesktopUpdater(
+  releases: GitHubReleases(
+    repoName: 'repo',
+    userName: 'example',
+    resolveArtifactName: (releaseTag) => 'app_$releaseTag.zip',
+  ),
+  updateRunner: UpdateRunner.platform(
+    applicationLabel: 'App',
+    macosBundleName: 'App.app',
+    windowsExecutableName: 'App.exe',
+  ),
+);
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+### Check for Updates
 
 ```dart
-const like = 'sample';
+final latestVersion = await updater.checkUpdateAvailable();
+if (latestVersion != null) {
+  print('Update available: $latestVersion');
+}
 ```
 
-## Additional information
+### Install an Update
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+```dart
+await updater.installUpdate(version: latestVersion);
+```
+
+The update installation process performs the following steps:
+- Closes the running application
+- Replaces application files with the downloaded release
+- Restarts the application after successful installation
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request on the GitHub repository.
+
+## License
+
+This package is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

@@ -1,6 +1,6 @@
 name: remote_rift_desktop_updater
-description: A starting point for Dart libraries or applications.
-version: 0.5.0
+description: A package that enables application updates at runtime.
+version: 0.0.1
 publish_to: none
 
 environment:
