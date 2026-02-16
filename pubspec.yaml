@@ -1,6 +1,6 @@
 name: remote_rift_desktop
 description: "A desktop application that launches and manages the local connector service."
-version: 0.6.4
+version: 0.7.0
 publish_to: "none"
 
 environment:
@@ -28,13 +28,13 @@ dependencies:
   remote_rift_api:
     git:
       url: https://github.com/tomwyr/remote-rift-connector.git
-      ref: 0.12.0
+      ref: 0.12.1
       path: packages/api
 
   remote_rift_core:
     git:
       url: https://github.com/tomwyr/remote-rift-connector.git
-      ref: 0.12.0
+      ref: 0.12.1
       path: packages/core
 
   remote_rift_ui:

@@ -1,3 +1,7 @@
+## [0.7.0] - 2026-02-16
+
+- Added support for application updates
+
 ## [0.6.4] - 2026-01-28
 
 - Fixed missing network entitlement

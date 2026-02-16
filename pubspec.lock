@@ -624,20 +624,20 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/api"
-      ref: "0.12.0"
-      resolved-ref: "088533b1ac34acf7b3bb9a75fd59a324de04df13"
+      ref: "0.12.1"
+      resolved-ref: eec8499d75c0b10a3b3fb3aabcdc680470bca5ae
       url: "https://github.com/tomwyr/remote-rift-connector.git"
     source: git
-    version: "0.12.0"
+    version: "0.12.1"
   remote_rift_core:
     dependency: "direct main"
     description:
       path: "packages/core"
-      ref: "0.12.0"
-      resolved-ref: "088533b1ac34acf7b3bb9a75fd59a324de04df13"
+      ref: "0.12.1"
+      resolved-ref: eec8499d75c0b10a3b3fb3aabcdc680470bca5ae
       url: "https://github.com/tomwyr/remote-rift-connector.git"
     source: git
-    version: "0.12.0"
+    version: "0.12.1"
   remote_rift_ui:
     dependency: "direct main"
     description:
