@@ -24,7 +24,7 @@ Future<void> buildExecutable(String workingDirectory) async {
 
 UpdaterBuildPaths resolvePaths(BuildInput input) {
   final rootPath = path.fromUri(input.packageRoot);
-  final updaterRoot = path.join(rootPath, 'packages', 'updater');
+  final updaterRoot = path.join(rootPath, 'packages', 'application_updater');
   final updaterFileName = resolveUpdaterFileName();
   final builtExecutable = path.join(updaterRoot, 'build', 'bundle', 'bin', updaterFileName);
   final assetTarget = path.join(rootPath, 'assets', updaterFileName);
