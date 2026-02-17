@@ -2,6 +2,10 @@
 
 Desktop application for **Remote Rift**, an application that lets you queue for League of Legends games from your phone.
 
+<kbd><img width="250" alt="desktop-1" src="https://github.com/user-attachments/assets/7e0ce4ea-f572-44ef-851c-4f821015ec47" /></kbd>
+<kbd><img width="250" alt="desktop-2" src="https://github.com/user-attachments/assets/f1eeabd1-df70-47d7-9772-e66da6dd22b0" /></kbd>
+<kbd><img width="250" alt="desktop-3" src="https://github.com/user-attachments/assets/02df3926-d4d3-43c0-8ab7-f2d2f3f54a84" /></kbd>
+
 ## Overview
 
 Remote Rift Desktop is available for Windows and macOS. It provides a thin wrapper around Remote Rift Connector, allowing the mobile application to access the League client and displaying key service information.
