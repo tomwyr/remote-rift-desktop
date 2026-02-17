@@ -37,11 +37,12 @@ This section describes selected third-party packages used throughout the applica
 
 ## Usage
 
-To run the application on a computer:
+To run the application on a device:
 
 1. Download the latest version from the [GitHub releases page](https://github.com/tomwyr/remote-rift-desktop/releases) for your operating system. Builds are available for Windows and macOS.
 2. Run the downloaded application. You may need to grant permission to allow communication with devices on your local network.
 3. Start the League of Legends client and wait for the connection to be established.
+4. Run the Remote Rift Mobile application following the [setup instructions](https://github.com/tomwyr/remote-rift-mobile?tab=readme-ov-file#usage).
 
 > [!important]
 > The service API address is resolved automatically and requires the user to be connected to a single network. At the moment, if multiple networks are available, the application will automatically select one network address to use.
